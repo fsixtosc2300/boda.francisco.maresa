@@ -17,6 +17,18 @@
       margin-top: 10px;
       border-radius: 5px;
     }
+    #countdown {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #d63384;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
   </style>
 </head>
 <body>
@@ -25,30 +37,33 @@
   <input type="text" id="codigo" placeholder="Ej. JP2501">
   <br>
   <button onclick="verificarCodigo()">Ver mi invitación</button>
-<script>
-  const targetDate = new Date("2025-10-25T00:00:00");
 
-  function updateCountdown() {
-    const now = new Date();
-    const diff = targetDate - now;
+  <!-- 🔢 Aquí aparece el conteo -->
+  <div id="countdown"></div>
 
-    if (diff <= 0) {
-      document.getElementById("countdown").innerHTML = "¡Es hoy! 💍";
-      return;
+  <script>
+    const targetDate = new Date("2025-10-25T00:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "¡Es hoy! 💍";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("countdown").innerHTML =
+        `${days} días, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
     }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    document.getElementById("countdown").innerHTML =
-      `${days} días, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
-  }
-
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
-</script>
-
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 </body>
 </html>
