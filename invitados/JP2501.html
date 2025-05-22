@@ -3,16 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <title>Invitación para Juan Pérez</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: #fff0f5;
+    }
+    header img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+    }
+    #map {
+      height: 400px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 600px;
+    }
+  </style>
 </head>
-<body style="font-family: sans-serif; text-align: center; background-color: #fff0f5;">
+<body>
   <header>
-    <img src="cabecera.jpg" alt="Imagen de cabecera" style="width: 100%; max-width: 600px; height: auto;">
+    <img src="cabecera.jpg" alt="Imagen de cabecera">
   </header>
   <h1>¡Hola Juan Pérez!</h1>
   <p>Nos encantaría que nos acompañes el <strong>25 de octubre</strong>.</p>
   <p>Estás invitado con <strong>3</strong> persona(s) más.</p>
+  
+  <div id="map"></div> <!-- Aquí va el mapa dinámico -->
+
   <p><a href="https://maps.app.goo.gl/ejemplo" target="_blank">📍 Ver ubicación</a></p>
   <p><a href="https://forms.gle/ejemplo" target="_blank">📝 Confirmar asistencia</a></p>
-</body>
 
+  <script>
+    var map = L.map('map').setView([19.4723, -99.2372], 15); // Coordenadas de Naucalpan
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([19.4723, -99.2372]).addTo(map)
+      .bindPopup('Ubicación del evento')
+      .openPopup();
+  </script>
+</body>
 </html>
