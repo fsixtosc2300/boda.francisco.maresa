@@ -63,7 +63,7 @@
       const diff = targetDate - now;
 
       if (diff <= 0) {
-        document.getElementById("countdown").innerHTML = "¡Es hoy! 💍";
+        document.getElementById("countdown").innerHTML = "¡Es hoy! 🎉";
         return;
       }
 
@@ -73,11 +73,13 @@
       const seconds = Math.floor((diff / 1000) % 60);
 
       document.getElementById("countdown").innerHTML =
-        `${days} días, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
+        `<span style="font-size: 28px; font-weight: bold; color: #d63384;">${days}</span> días, 
+        ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
     }
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
+
 </body>
 </html>
